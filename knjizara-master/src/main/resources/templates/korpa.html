@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Prijava</title>
+
+</head>
+<body>
+	<a href="/Knjizara/knjiga">Sve knjige</a>
+
+
+	<h3>Knjige:</h3>
+
+	<div th:each="knjigaIKolicina : ${korpa.knjigeIKolicine}">
+		<a th:href="@{/knjiga/{id}(id=${knjigaIKolicina.knjiga.id})}">
+			<h4 th:text="${knjigaIKolicina.knjiga.naziv}"></h4>
+		</a>
+		<p>
+		<h4 th:text="${knjigaIKolicina.knjiga.autor}"></h4>
+		</p>
+		<p>
+			<h4 th:text="${knjigaIKolicina.kolicina}"></h4>
+		</p>  
+           
+           <a th:href="@{/korpa/ukloni/{id}(id=${knjigaIKolicina.knjiga.id})}">
+				Ukloni iz korpe</a>
+		<hr>
+       		
+       	
+     </div>
+     Ukupna vrednost:
+     <h3 th:text="${korpa.ukupnaVrednost()}"> </h3>
+<div>
+	<div th:if=${korpa.punaKorpa()}>
+	<div th:if="${bodovi != 0}">
+		<h3>Broj bodova na loyalty kartici:</h3>
+		<h3 th:text="${bodovi}"></h3>
+	</div>
+	<form action="/Knjizara/kupovina" method="post">
+			<input type="hidden" th:value="${knjigePodaci}" name="knjigePodaci">
+			<input type="hidden" th:value="${kolicinePodaci}" name="kolicinePodaci"> 
+			<div th:if="${bodovi != 0}">
+				Unesite bodove: <br>
+			
+				<select name="bodovi">
+					<option th:each="b : ${ponudjeniBodovi}" th:value="${b}" th:text="${b}"></option>
+				
+				</select> <br>
+			
+			</div>
+			<div th:if="${bodovi == 0}">
+				<input type="hidden" value="-1" name="bodovi">
+			
+			</div>
+			
+			
+			<input
+				type="submit" value="Kupi knjigu!">
+		</form>
+	</div>
+		
+
+	</div>	
+		<p class="greska" th:text="${poruka}"></p>
+</body>
+</html>

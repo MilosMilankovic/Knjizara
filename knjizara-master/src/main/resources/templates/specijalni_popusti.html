@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Naslov</title>
+
+</head>
+<body>
+	<a href="/Knjizara/knjiga">Sve knjige</a>
+	<a href="/Knjizara/korpa">Korpa</a>
+	<h3>Odaberite specijalni datum za popust</h3>
+	<form action="/Knjizara/specijalni-datumi" method="post">
+		Datum: <br>
+		<input type="date" name="datum" required="true"><br>
+		Popust: <br>
+		<input type="text" required="true" name="popust"><br>
+		<input type="submit" value="Unesi specijalni datum">
+	
+	</form>
+		
+	
+	
+</body>
+</html>

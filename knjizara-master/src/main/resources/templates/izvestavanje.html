@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Naslov</title>
+
+
+</head>
+<body>
+	
+	<a href="/Knjizara/knjiga">Sve knjige</a>
+	<a href="/Knjizara/korpa">Korpa</a>
+	<table>
+		<thead> 
+			<tr>
+				<th>Knjiga</th>
+				<th>Autor</th>
+				<th>Broj prodatih primeraka</th>
+				<th>Ukupna cena</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+		<tr th:each="izvestaj : ${izvestaji}">
+			<td><a th:href="@{/knjiga/{id}(id=${izvestaj.knjiga.id})}"  th:text="${izvestaj.knjiga.naziv}"></a> </td>
+			<td  th:text="${izvestaj.knjiga.autor}"></td>
+			<td  th:text="${izvestaj.brojProdatihPrimeraka}"></td>
+			<td  th:text="${izvestaj.ukupnaCena()}"></td>
+		</tr>
+		</tbody>
+	</table>
+	</div> 
+</body>
+</html>
+

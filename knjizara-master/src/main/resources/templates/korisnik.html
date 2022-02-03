@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Naslov</title>
+
+</head>
+<body>
+	<a href="/Knjizara/knjiga">Sve knjige</a>
+	<a href="/Knjizara/korpa">Korpa</a>
+	<a href="/Knjizara/odjava">Odjava</a>
+	<h3>Profil korisnika</h3>
+	<h4 th:text="${korisnik.ime}"></h4>
+	
+	<div th:if="${prijavljeniKorisnik.isAdmin() and not korisnik.isAdmin()}">
+		Izmena uloge:
+	
+		<form action="/Knjizara/promena_uloge" method="post" >
+			<input type="hidden" th:value="${korisnik.korisnickoIme}" name="korisnickoIme" >
+			<select name="stringUloga">
+				<option>KUPAC</option>
+				<option>ADMINISTRATOR</option>
+			</select> <br>
+			<input type="submit" value="Promeni ulogu">
+			
+		</form>
+		
+	</div>
+	<div th:if="${prijavljeniKorisnik.isAdmin() and not korisnik.isAdmin() and not korisnik.isBlokiran()}">
+		<form action="/Knjizara/blokiraj" method="post">
+			<input type="hidden" th:value ="${korisnik.id}" name="korisnikId">
+			<input type="submit" value="Blokiraj korisnka">
+		
+		</form>
+	
+	</div>
+	<div th:if="${prijavljeniKorisnik.isAdmin() and not korisnik.isAdmin() and korisnik.isBlokiran()}">
+		<form action="/Knjizara/deblokiraj" method="post">
+			<input type="hidden" th:value ="${korisnik.id}" name="korisnikId">
+			<input type="submit" value="Deblokiraj korisnika">
+		
+		</form>
+	
+	</div>
+	<div th:if="${prijavljeniKorisnik.isAdmin() or prijavljeniKorisnik.korisnickoIme == korisnik.korisnickoIme}" >
+	<table border="1">
+		<thead>
+			<th>Knjiga</th>
+			<th>Cena</th>
+			<th>Datum i Vreme</th>
+		</thead>
+		<tbody>
+			<tr th:each="kupovina : ${kupovine}">
+				<td > <a th:href="@{/knjiga/{id}(id=${kupovina.knjiga.id})}" th:text="${kupovina.knjiga.naziv}"> Knjiga </a></td>
+				<td th:text="${kupovina.cena}">  </td>
+				<td th:text="${kupovina.datum}"></td>
+			
+			
+			</tr>
+		
+		
+		</tbody>
+	
+	</table>
+	<hr>
+	<h3>Knjige u listi zelja:</h3>
+	<table border="1">
+		<thead>
+			<th>Knjiga</th>
+			<th>Opcija</th>
+		
+		</thead>
+		<tbody>
+			<tr th:each = "knjiga : ${knjige}">
+				<td th:text="${knjiga.naziv}"></td>
+				<td >
+					<form action="/Knjizara/knjiga/lista_zelja/ukloni" method="post">
+						<input type="hidden" th:value="${knjiga.id}" name="knjigaId">
+						<input type="submit" value="Ukloni">
+					</form>
+				</td>
+			</tr>
+		
+		</tbody>
+	
+	</table>
+	
+	</div>
+
+
+
+</body>
+</html>

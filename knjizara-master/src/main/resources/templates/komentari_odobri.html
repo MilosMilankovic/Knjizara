@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Naslov</title>
+
+</head>
+<body>
+	<a href="/Knjizara/knjiga">Sve knjige</a>
+	<a href="/Knjizara/korpa">Korpa</a>	
+
+	<hr>
+	<div>
+		<br>
+		<hr>
+		<h1>Komentari za odobravanje:</h1>
+		<div th:each="komentar : ${komentari}">
+			<h3 th:text="${komentar.autor.korisnickoIme}"></h3>
+			<h5 th:text="${komentar.tekst}"></h5>
+			<h5 th:text="${komentar.ocena}"></h5>
+			<form action="/Knjizara/komentar/odobri" method="post">
+				<input type="hidden" th:value="${komentar.id}" name="komentarId">
+				<input type="submit" value="Odobri">
+				
+			</form>	
+			<form action="/Knjizara/komentar/odbij" method="post">
+				<input type="hidden" th:value="${komentar.id}" name="komentarId">
+				<input type="submit" value="Odbij">
+				
+			</form>			
+			
+
+
+
+
+			<hr>
+		</div>
+	</div>
+	<div></div>
+
+</body>
+</html>

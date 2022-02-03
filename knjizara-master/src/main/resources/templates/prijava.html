@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Prijava</title>
+	
+	
+</head>
+<body>
+<a href="/Knjizara/registracija">Registracija</a>
+	<div th:fragment="centralniDiv">
+		<form method="post" action="prijava">
+			<table class="forma">
+				<caption>Prijava</caption>
+				<tr><th>Korisničko ime:</th><td><input type="text" name="korisnickoIme" required="true"/></td></tr>
+				<tr><th>Lozinka:</th><td><input type="password" name="lozinka" required="true"/></td></tr>
+				
+				<tr><th></th><td><input type="submit" value="Prijava"/></td></tr>
+			</table>
+		</form>
+		<p class="greska" th:text="${poruka}"></p>
+	</div>
+</body>
+</html>

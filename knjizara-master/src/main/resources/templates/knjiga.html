@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Naslov</title>
+
+</head>
+<body>
+	<a href="/Knjizara/knjiga">Sve knjige</a>
+	<a href="/Knjizara/korpa">Korpa</a>
+	
+
+	<div th:if=${korisnik.isAdmin()}>
+
+		<form action="/Knjizara/kupovina-admin" method="post">
+
+			<p th:text="${poruka}" style="color: green;"></p>
+			<hr>
+			Naruči knjige:<br> Broj primeraka: <input type="text"
+				name="brojPrimeraka" required="true"> <input type="submit"
+				value="Naruci"> <input type="hidden" name="knjigaId"
+				th:value="${knjiga.id}">
+			<hr>
+		</form>
+		<hr>
+		<a th:href="@{/knjiga/izmeni/{id}(id=${knjiga.id})}"> Izmeni</a>
+	</div>
+	<hr>
+	
+	<hr>
+
+	<form action="/Knjizara/knjiga/lista_zelja" method="post">
+		<input type="hidden" th:value="${knjiga.id}" name="knjigaId">
+		<input type="submit" value="Dodaj u listu zelja">
+	
+	</form>
+	<hr>
+
+	<form action="/Knjizara/korpa/dodaj">
+		Kolicina: <br> <input type="text" name="kolicina" required="true">
+		<br> <input type="hidden" name="knjigaId" th:value="${knjiga.id}">
+		<input type="submit" value="Dodaj u korpu">
+	</form>
+	<h3 th:text="${knjiga.naziv}">Naslov:</h3>
+	<img th:src="@{'/images/' + ${knjiga.slika}}"/ height="200" width="250"> <br>
+	
+	<div>
+		<p th:text="${knjiga.autor}"></p>
+		<p th:text="${knjiga.prosecnaOcena}"></p>
+		<p th:text="${knjiga.isbn}"></p>
+
+	</div>
+	<hr>
+	<div>
+		<div th:if=${kupioKnjigu}>
+			`
+			<div th:if=${nijePostavioKomentar}>
+				<h3>Dodaj komentar:</h3>
+				<form action="/Knjizara/komentar" method="post">
+					Ocena: <br> <select name="ocena">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+
+					</select> <br> <br>
+					<textarea name="tekst" rows="10" required="true"></textarea>
+					<br> <input type="hidden" name="korisnickoIme"
+						th:value="${korisnik.korisnickoIme}"> <input type="hidden"
+						name="knjigaId" th:value="${knjiga.id}"> <input
+						type="submit" value="Dodaj komentar">
+				</form>
+			</div>
+		</div>
+		<br>
+		<hr>
+		<h3>Komentari:</h3>
+		<div th:each="komentar : ${komentari}">
+			<h3 th:text="${komentar.autor.korisnickoIme}"></h3>
+			<h5 th:text="${komentar.tekst}"></h5>
+			<h5 th:text="${komentar.ocena}"></h5>
+
+
+
+
+			<hr>
+		</div>
+	</div>
+	<div></div>
+
+</body>
+</html>

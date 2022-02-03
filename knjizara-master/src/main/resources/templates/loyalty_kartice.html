@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Naslov</title>
+
+</head>
+<body>
+	<a href="/Knjizara/knjiga">Sve knjige</a>
+	<a href="/Knjizara/korpa">Korpa</a>
+	<h3>Zahtevi za Loyalty Karticu</h3>
+		
+		<div th:each="kartica : ${kartice}">
+			<h3 th:text="${kartica.korisnik.korisnickoIme}"></h3>
+			<form th:action="@{/loyaltykartica/odobri/{id}(id=${kartica.id})}" >
+			<input type="submit" value="Odobri">
+			</form> 
+			<form th:action="@{/loyaltykartica/odbij/{id}(id=${kartica.id})}" >
+			<input type="submit" value="Odbij">
+			</form> 
+			<hr>
+		
+			
+		</div>
+			
+		
+	
+	
+</body>
+</html>

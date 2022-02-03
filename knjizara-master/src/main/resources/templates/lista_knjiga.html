@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Prijava</title>
+
+</head>
+<body>
+<img th:src="@{g2.png}" />
+
+<a href="/Knjizara/knjiga">Sve knjige</a>
+<a href="/Knjizara/korpa">Korpa</a>
+ <a th:href="@{/korisnik/{korisnickoIme}(korisnickoIme=${korisnik.korisnickoIme})}">Profil </h4></a>
+<a href="/Knjizara/odjava">Odjava</a>
+<a href="/Knjizara/loyaltykartica/zahtev">Podnesi zahtev</a>
+<a href="/Knjizara/knjiga/lista_zelja">Lista Zelja</a>
+
+<div th:if=${korisnik.isAdmin()}>
+	<a href="/Knjizara/knjiga/dodaj">Dodaj knjigu</a>
+	<a href="/Knjizara/komentar/odobravanje">Komentari za odobravanje</a>
+	<a href="/Knjizara/izvestavanje">Izveštaj</a>
+	<a href="/Knjizara/svi_korisnici">Svi korisnici</a>
+	<a href="/Knjizara/loyaltykartica">Zahtevi</a>
+	<a href="/Knjizara/specijalni-datumi"> Specijalni Datumi</a>
+	
+	
+	
+</div>
+<h5>Pretraga:</h5>
+<form action="/Knjizara/knjiga/pretraga">
+
+	
+
+	Naziv: <br>
+	<input type="text" name="naziv"> <br>
+	Min cena: <br>
+	<input type="text" name="minCena"> <br>
+	Max cena: <br>
+	<input type="text" name="maxCena"> <br>
+	Autor: <br>
+	<input type="text" name="autor"> <br>
+	Jezik: <br>
+	<input type="text" name="jezik"> <br>
+	
+	<input type="submit" value="Pretraga">
+</form>
+<div th:if=${korisnik.isAdmin()}>
+<form action="/Knjizara/knjiga/pretraga_po_isbn">
+
+	ISBN: <br>
+	<input type="text" name="ISBN"> <br>
+	
+	<input type="submit" value="Pretrazi po ISBN" required="true">
+</form>
+</div>
+	
+	<h3>Knjige: </h3>
+	 <div th:each="knjiga : ${knjige}">
+	 	Naziv:
+           <a th:href="@{/knjiga/{id}(id=${knjiga.id})}"> <h4 th:text="${knjiga.naziv}"> </h4></a>
+       Cena:<h4 th:text="${knjiga.cena}"> </h4>
+       <img th:src="@{'/images/' + ${knjiga.slika}}"/ height="200" width="250"> <br>
+       Prosecna ocena:
+       <h4 th:text="${knjiga.prosecnaOcena}"></h4>
+       
+ 
+           
+       		<hr>
+     </div>
+
+	
+		<p class="greska" th:text="${poruka}"></p>
+</body>
+</html>

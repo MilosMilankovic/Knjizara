@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Izmeni knjigu</title>
+</head>
+<body>
+		<a th:href="@{/knjiga/{id}(id=${knjiga.id})}"> Profil knjige</a>
+
+	<h3>Unos knjige:</h3>
+	<form th:action="@{/knjiga/izmeni/{id}(id=${knjiga.id})}" method="post" enctype="multipart/form-data" >
+		Naziv: <br> <input type="text" name="naziv" th:value="${knjiga.naziv}" required="true"> <br> 
+		
+			ISBN: <br> <input
+			type="text" th:value="${knjiga.isbn}" required="true" disabled><br>
+			<br> <input type="hidden" name="isbn" th:value="${knjiga.isbn}"> <br> 
+
+		Izdavacka Kuæa: <br> <input type="text" name="izdavackaKuca" th:value="${knjiga.izdavackaKuca}" required="true"><br>
+
+
+		Autor: <br> <input type="text" name="autor" th:value="${knjiga.autor}" required="true"><br>
+
+
+		Godina izdavanja: <br> <input type="text" name="godinaIzdavanja" th:value="${knjiga.godinaIzdavanja}" required="true"><br>
+
+
+		Kratak opis: <br> <input type="text" name="kratakOpis" th:value="${knjiga.kratakOpis}" required="true"><br>
+
+
+		Slika: <br> <input type="file" name="slika" required = "true"><br>
+		
+
+
+
+		Cena: <br> <input type="text" name="cena" th:value = "${knjiga.cena}" required="true"><br> Broj
+		Stranica:<br> <input type="text" name="brojStranica" th:value="${knjiga.brojStranica}" required="true"><br>
+
+
+		Tip Poveza:<br> <select name="tipPoveza">
+			<option>MEKI</option>
+			<option>TVRDI</option>
+		</select> <br> Pismo:<br> <select name="pismo">
+			<option>LATINICA</option>
+			<option>CIRILICA</option>
+		</select> <br> Jezik:<br> <input type="text" name="jezik" th:value="${knjiga.jezik}" required="true"><br>
+
+
+		<input type="submit" value="Izmeni knjigu">
+
+
+	</form>
+
+
+</body>
+
+</html>

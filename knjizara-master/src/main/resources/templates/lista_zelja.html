@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Prijava</title>
+
+</head>
+<body>
+	<a href="/Knjizara/knjiga">Sve knjige</a>
+
+
+	<h3>Knjige u listi zelja:</h3>
+	<table border="1">
+		<thead>
+			<th>Knjiga</th>
+			<th>Opcija</th>
+		
+		</thead>
+		<tbody>
+			<tr th:each = "knjiga : ${knjige}">
+				<td th:text="${knjiga.naziv}"></td>
+				<td >
+					<form action="/Knjizara/knjiga/lista_zelja/ukloni" method="post">
+						<input type="hidden" th:value="${knjiga.id}" name="knjigaId">
+						<input type="submit" value="Ukloni">
+					</form>
+				</td>
+			</tr>
+		
+		</tbody>
+	
+	</table>
+	
+
+
+</body>
+</html>

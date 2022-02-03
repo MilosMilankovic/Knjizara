@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Prijava</title>
+
+</head>
+<body>
+	<a href="/Knjizara/knjiga">Sve knjige</a>
+	<a href="/Knjizara/korpa">Korpa</a>
+	<h3>Uspešno ste kupili knjige!</h3>
+	<h3>Stara cena:</h3>
+	<h3 th:text="${staraCena}"></h3>
+	<div th:if="${novaCena != null}">
+	
+		<h3>Nova Cena sa primenom loyalty kartica bodova:</h3>
+		<h3 th:text="${novaCena}"></h3>
+	
+	</div>
+
+</body>
+</html>

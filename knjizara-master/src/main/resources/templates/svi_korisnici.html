@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>Naslov</title>
+
+</head>
+<body>
+	<a href="/Knjizara/knjiga">Sve knjige</a>
+	<a href="/Knjizara/korpa">Korpa</a>
+	<a href="/Knjizara/odjava">Odjava</a>
+	
+	<table border="1">
+		<thead>
+			<th>Korisničko Ime</th>
+			<th>Datum registracije</th>
+			<th>Uloga</th>
+			
+		</thead>
+		<tbody>
+		<tr th:each="korisnik : ${korisnici}">
+			<td><a th:text="${korisnik.korisnickoIme}" th:href="@{/korisnik/{korisnickoIme}(korisnickoIme=${korisnik.korisnickoIme})}">  </a></td>
+			<td th:text="${korisnik.datumVremeRegistracije}"></td>
+			<td th:text="${korisnik.uloga}"></td>
+		</tr>
+		
+		</tbody>
+	
+	</table>
+
+
+
+</body>
+</html>

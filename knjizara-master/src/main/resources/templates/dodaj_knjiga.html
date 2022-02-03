@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<head>
+<title>Dodaj knjigu</title>
+</head>
+<body>
+<a href="/Knjizara/knjiga">Sve knjige</a>
+<a href="/Knjizara/korpa">Korpa</a>
+
+
+	<h3>Unos knjige:</h3>
+	<form action="dodaj" method="post" enctype="multipart/form-data">
+		Naziv: <br> <input type="text" name="naziv" required="true"> <br>
+		ISBN: <br> <input type="text" name="isbn" required="true"><br>
+
+
+		Izdavacka Kuæa: <br> <input type="text" name="izdavackaKuca" required="true"><br>
+
+
+		Autor: <br> <input type="text" name="autor"><br>
+
+
+		Godina izdavanja: <br> <input type="text" name="godinaIzdavanja" required="true"><br>
+
+
+		Kratak opis: <br> <input type="text" name="kratakOpis" required="true"><br>
+
+
+		Slika: <br> <input type="file" name="slika" required = "true"><br>
+
+
+
+		Cena: <br> <input type="text" name="cena" required="true"><br> 
+		Broj Stranica:<br> <input type="text" name="brojStranica" required="true"><br>
+
+
+		Tip Poveza:<br> <select name="tipPoveza">
+			<option>MEKI</option>
+			<option>TVRDI</option>
+		</select> <br> Pismo:<br> <select name="pismo">
+			<option>LATINICA</option>
+			<option>CIRILICA</option>
+		</select> <br> 
+		Jezik:<br> <input type="text" name="jezik" required="true"><br>
+
+
+
+
+
+
+
+
+
+		<input type="submit" value="Dodaj knjigu">
+
+
+	</form>
+
+
+</body>
+
+</html>
